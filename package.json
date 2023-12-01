@@ -18,6 +18,13 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@syncfusion/ej2-angular-base": "^23.2.5",
+    "@syncfusion/ej2-angular-maps": "^23.2.4",
+    "@syncfusion/ej2-base": "^23.2.6",
+    "@syncfusion/ej2-data": "^23.2.4",
+    "@syncfusion/ej2-maps": "^23.2.4",
+    "@syncfusion/ej2-material-theme": "~23.2.4",
+    "@syncfusion/ej2-svg-base": "^23.2.5",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
