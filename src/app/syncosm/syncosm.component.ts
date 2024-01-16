@@ -19,7 +19,7 @@ export class SyncosmComponent implements OnInit {
   public markerSettings?:object;
   public navigationLineSettings?:object;
 
-  constructor(private geolocationService: GeolocationService) { }
+  constructor(private geolocationService: GeolocationService){}
 
   ngOnInit(): void {
     this.getCurrentLocation();
@@ -28,29 +28,37 @@ export class SyncosmComponent implements OnInit {
     this.zoomSettings ={
       enable: true,
       toolbars:["Zoom","ZoomIn","ZoomOut","Pan","Reset"],
+      zoomFactor: 10
     }
 
     this.centerPosition = {
-      latitude: this.latitude,
-      longitude: this.longitude
+      latitude: 20.555555,
+      longitude: 78.5663727
     }
+
+    this.markerSettings=[{
+      height: 40,
+      width: 40,
+      visible: true,
+      enableDrag: true,
+      dataSource: [{
+        latitude:17.4173783, longitude:78.5663727 , name: 'MarkerOne'
+      }]
+    }]
   }
 
-  // getCurrentLocation(){
-  //   this.geolocation.getCurrentPosition((position) => {
-  //     this.latitude = position.coords.latitude;
-  //     this.longitude = position.coords.longitude;
-
-  //     //this.addMarker(this.latitude, this.longitude);
-  //   }, (error) => {
-  //     console.error(error);
-  //   });
-  // }
   getCurrentLocation(){
       this.geolocationService.getCurrentPosition().then((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         console.log('Latitude: '+ this.latitude+' , longitude: '+this.longitude);
+
+        // Update centerPosition with current location
+        this.centerPosition = {
+          latitude: this.latitude,
+          longitude: this.longitude
+      };
+
       }) . catch((error)=> console.error('Error getting geolocation: ', error))
   }
 }

@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AnnotationsService, BubbleService, DataLabelService, GeoLocation, LegendService, MapsModule, MapsTooltipService, MarkerService, NavigationLineService, SelectionService, ZoomService } from '@syncfusion/ej2-angular-maps';
 import { AgmComponent } from './agm/agm.component';
 import { SyncosmComponent } from './syncosm/syncosm.component';
+import { OSMService } from 'src/test/osm.service';
+import { TestModule } from 'src/test/test.module';
+import { MapsModule, MarkerService, NavigationLineService } from '@syncfusion/ej2-angular-maps';
 
 @NgModule({
   declarations: [
@@ -16,18 +18,12 @@ import { SyncosmComponent } from './syncosm/syncosm.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MapsModule,
+    TestModule,
+    MapsModule
   ],
   providers: [
-    LegendService,
-    MarkerService, 
-    MapsTooltipService, 
-    DataLabelService, 
-    BubbleService, 
-    NavigationLineService,
-    SelectionService,
-    AnnotationsService,
-    ZoomService
+    OSMService,
+    MarkerService,
   ],
   bootstrap: [AppComponent]
 })

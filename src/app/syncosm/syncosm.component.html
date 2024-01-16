@@ -1,7 +1,8 @@
 <h1> Syncfusion Maps</h1>
 <br><br><br><br><br><br>
-<ejs-maps id="rn-container" style="display:block" [zoomSettings]="zoomSettings" >
+<button (click)="getCurrentLocation()">Defaulth Location</button>
+<ejs-maps id="rn-container" style="display:block" [zoomSettings]="zoomSettings" [centerPosition]="centerPosition">
     <e-layers>
-    <e-layer  [urlTemplate]="urlTemplate" [markerSettings]="" [navigationLineSettings]=""></e-layer>
+    <e-layer  [urlTemplate]="urlTemplate" [markerSettings]="markerSettings" [navigationLineSettings]=""></e-layer>
 </e-layers>
 </ejs-maps>
