@@ -32,7 +32,7 @@ export class SyncosmComponent implements OnInit {
     }
 
     this.centerPosition = {
-      latitude: 20.555555,
+      latitude: 17.4173783,
       longitude: 78.5663727
     }
 
@@ -54,10 +54,10 @@ export class SyncosmComponent implements OnInit {
         console.log('Latitude: '+ this.latitude+' , longitude: '+this.longitude);
 
         // Update centerPosition with current location
-        this.centerPosition = {
-          latitude: this.latitude,
-          longitude: this.longitude
-      };
+      //   this.centerPosition = {
+      //     latitude: this.latitude,
+      //     longitude: this.longitude
+      // };
 
       }) . catch((error)=> console.error('Error getting geolocation: ', error))
   }
