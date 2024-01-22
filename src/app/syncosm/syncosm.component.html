@@ -1,8 +1,14 @@
 <h1> Syncfusion Maps</h1>
 <br><br><br><br><br><br>
 <button (click)="getCurrentLocation()">Default Location</button>
-<ejs-maps id="rn-container" style="display:block" [zoomSettings]="zoomSettings" [centerPosition]="centerPosition">
-    <e-layers>
-    <e-layer  [urlTemplate]="urlTemplate" [markerSettings]="markerSettings" [navigationLineSettings]=""></e-layer>
-</e-layers>
-</ejs-maps>
+<div fxLayout="column" fxLayoutAlign="center">
+<div fxFlex="50%">
+    <ejs-textbox id="addresstext" [(ngModel)]="textData" >
+    </ejs-textbox>
+    <ejs-maps id="rn-container" [zoomSettings]="zoomSettings" [centerPosition]="centerPosition" (markerDragEnd)="onMarkerDragEnd($event)">
+        <e-layers>
+        <e-layer  [urlTemplate]="urlTemplate" [markerSettings]="markerSettings" ></e-layer>
+    </e-layers>
+    </ejs-maps>
+</div>
+</div>

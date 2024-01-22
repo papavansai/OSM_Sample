@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Maps, Marker } from '@syncfusion/ej2-angular-maps';
 import { world_map } from 'src/assets/world-map';
 import { GeolocationService } from 'src/services/geolocation.service';
+import { OSMService } from 'src/test/osm.service';
+import { NgModel } from '@angular/forms';
+Maps.Inject(Marker);
 
 @Component({
   selector: 'app-syncosm',
@@ -17,18 +20,31 @@ export class SyncosmComponent implements OnInit {
   public zoomSettings?: object;
   public centerPosition?: object;
   public markerSettings?:object;
-  public navigationLineSettings?:object;
+  public latlongfields?: any;
+  public reverseSearchResult: any;
+  public textData: any = '';
+  //  public markerDragStart = (args: IMarkerDragEventArgs | any){
+  //   onMarkerDragStart(args);
+  // };
+  // public markerDragEnd = (args: IMarkerDragEventArgs | any ){
+  //   onMarkerDragEnd(args)
+  // }; 
 
-  constructor(private geolocationService: GeolocationService){}
+  constructor(private geolocationService: GeolocationService, private osmService: OSMService){}
 
   ngOnInit(): void {
     this.getCurrentLocation();
-    this.urlTemplate = 'https://tile.openstreetmap.org/level/tileX/tileY.png'
+    this.urlTemplate = 'https://tile.openstreetmap.org/level/tileX/tileY.png';
 
     this.zoomSettings ={
       enable: true,
+      enablePanning: true,
       toolbars:["Zoom","ZoomIn","ZoomOut","Pan","Reset"],
-      zoomFactor: 10
+      pinchZooming: true,
+      doubleClickZoom: true,
+      minZoom: 2,
+      maxZoom:18,
+      zoomFactor: 18
     }
 
     this.centerPosition = {
@@ -60,5 +76,15 @@ export class SyncosmComponent implements OnInit {
       // };
 
       }) . catch((error)=> console.error('Error getting geolocation: ', error))
+  }
+  onMarkerDragStart(event: any){
+    console.log(event);
+  }
+  onMarkerDragEnd(event: any){
+    console.log(event);
+    this.latlongfields = event;
+    this.reverseSearchResult = this.osmService.getAddress(this.latlongfields.latitude, this.latlongfields.longitude);
+    console.log(this.reverseSearchResult);
+    this.textData = this.reverseSearchResult.display_name;
   }
 }

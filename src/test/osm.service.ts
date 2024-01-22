@@ -14,11 +14,20 @@ export class OSMService {
   constructor(private http: HttpClient) { }
 
   getCordinates(value: any): Observable<any> {
-    return this.http.get<any>(`${this.searchUrl}` + 'q=' + value);
+    return this.http.get<any>(`${this.searchUrl}q=${value}`);
   }
 
-  getAddress(): Observable<any> {
-    return this.http.get<any>(`${this.reverseUrl}`);
+  getAddress(lat: any, lon: any) {
+    //need to subscribe the value from the http client
+    let result = this.http.get<any>(`${this.reverseUrl}lat=${lat}&lon=${lon}&format=json`).subscribe(
+      (result)=>{
+        console.log(result);
+      },
+      (error)=>{
+        console.error(error);
+      }
+    );
+    return result;
   }
 
   getResult() {
